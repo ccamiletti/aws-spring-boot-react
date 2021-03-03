@@ -1,6 +1,21 @@
 version: '3.3'
 
 services:
+
+  nginx-proxy:
+    #image: jwilder/nginx-proxy
+    build: ./nginx
+    ports:
+      - "80:80"
+    networks:
+      - agenda-network
+
+    extra_hosts:
+      - agenda-web.nl:${HOST_IP}
+
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
   database:
     container_name: task-database
     image: postgres:latest
@@ -10,6 +25,8 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - "5432:5432"
+    networks:
+      - agenda-network
     volumes:
       - postgres:/data/postgres
 
@@ -21,10 +38,15 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
     ports:
       - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - agenda-network
     links:
       - database
     volumes:
       - pgadmin:/root/.pgadmin
+
+networks:
+  agenda-network:
 
 volumes:
   postgres:

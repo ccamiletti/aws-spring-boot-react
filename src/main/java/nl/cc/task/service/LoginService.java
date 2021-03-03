@@ -10,4 +10,8 @@ public class LoginService {
         return "token";
     }
 
+    public String getToken() {
+        return "LKJLKAJSLDJL-8767-8761-KJHKJHK";
+    }
+
 }
