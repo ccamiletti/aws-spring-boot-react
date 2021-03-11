@@ -8,27 +8,57 @@ services:
     ports:
       - "80:80"
     networks:
-      - agenda-network
-
+      - huis-flix-network
     extra_hosts:
-      - agenda-web.nl:${HOST_IP}
-
+      - huis-flix.nl:${HOST_IP}
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
-  database:
-    container_name: task-database
-    image: postgres:latest
+#  postgres:
+#    container_name: huis-flix-db
+#    image: postgres:latest
+#    environment:
+#      - POSTGRES_DB=postgres
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=postgres
+#    ports:
+#      - "5432:5432"
+#    networks:
+#      - huis-flix-network
+#    volumes:
+#      - postgres:/data/postgres
+
+  mysql:
+    image: mysql:5.7
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - "5432:5432"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
     networks:
-      - agenda-network
+      - huis-flix-network
     volumes:
-      - postgres:/data/postgres
+      - mysql_data:/var/lib/mysql
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      DB_VENDOR: MYSQL
+      DB_ADDR: mysql
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: Pa55w0rd
+      # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the MySQL JDBC driver documentation in order to use it.
+      #JDBC_PARAMS: "connectTimeout=30000"
+    ports:
+      - 9080:8080
+      - 7080:8080
+    depends_on:
+      - mysql
+    networks:
+      - huis-flix-network
 
   pgadmin:
     container_name: admin
@@ -39,15 +69,15 @@ services:
     ports:
       - "${PGADMIN_PORT:-5050}:80"
     networks:
-      - agenda-network
+      - huis-flix-network
     links:
-      - database
+      - mysql
     volumes:
       - pgadmin:/root/.pgadmin
 
 networks:
-  agenda-network:
+  huis-flix-network:
 
 volumes:
-  postgres:
+  mysql_data:
   pgadmin:
