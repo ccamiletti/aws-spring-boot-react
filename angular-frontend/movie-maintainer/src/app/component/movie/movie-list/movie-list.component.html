@@ -1,0 +1,31 @@
+<h2>Movie list</h2>
+<input class="form-control" type="text" [(ngModel)]="searchText" (ngModelChange)="searchByText()" placeholder="Search..">
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Movie name</th>
+            <th>Description</th>
+            <th>Video</th>
+            <th>Adult</th>
+            <th>Release Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let movie of movies | paginate: { 
+                        itemsPerPage: 10, currentPage: page,
+                        totalItems: totalResult
+                    } ">
+            <td>{{ movie.title }}</td>
+            <td><a href={{movie.poster_path}}>view picture</a></td>
+            <td>{{ truncate(movie.overview) }} </td>
+            <td>{{ movie.adult }} </td>
+            <td>{{ movie.release_date }} </td>
+            <td>
+                <button type="button" (click)="updateMovie(movie.id)" class="btn btn-info">Update</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+    <pagination-controls (pageChange)="onPaginateChage($event)" class="pagination"></pagination-controls>
+

@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "http://huis-flix.nl:8080/api",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {"^/api" : ""}
+  }
+}

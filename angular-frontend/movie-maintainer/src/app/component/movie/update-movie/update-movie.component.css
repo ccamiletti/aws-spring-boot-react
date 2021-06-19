@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 30%;
+  border: 0px solid;
+}
+
+.column-mat {
+  float: left;
+  width: 30%;
+  border: 0px solid;
+}
+
+
+/* Clear floats after the columns */
+.row {
+  content: "";
+  display: table;
+  clear: both;
+  font-size: 20px;
+  border: 0px solid;
+}
+
+.row_2 {
+  content: "";
+  display: table;
+  clear: both;
+  font-size: 20px;
+  border: 0px solid;
+  padding: 20px;
+  align-self:auto;
+}
+
+
+div.ex1 {
+  width: 1000px;
+  margin: auto;
+  border: 0px solid;
+}
+
+div.ex2 {
+  max-width: 500px;
+  margin: auto;
+  border: 3px solid #73AD21;
+}

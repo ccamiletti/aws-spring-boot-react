@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="admin" id="4">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="movie"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="movie">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="original_language" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="poster_path" type="VARCHAR(1024)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="video" type="Boolean">
+                <constraints nullable="true"/>
+            </column>
+            <column name="title" type="VARCHAR(1000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="overview" type="VARCHAR(1000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="release_date" type="datetime">
+                <constraints nullable="true"/>
+            </column>
+            <column name="vote_count" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="adult" type="boolean">
+                <constraints nullable="true"/>
+            </column>
+            <column name="backdrop_path" type="varchar(1000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="vote_average" type="double">
+                <constraints nullable="true"/>
+            </column>
+            <column name="original_title" type="varchar(2000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="original_name" type="varchar(2000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="name" type="varchar(2000)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="popularity" type="double">
+                <constraints nullable="true"/>
+            </column>
+            <column name="media_type" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="movie"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,30 @@
+<div class="col-md-8 offset-md-3">
+    <h3>Create Movie</h3>
+
+    <form (ngSubmit)="updateMovie()" [formGroup]="reactiveFrom">
+
+        <div class="row_2">
+            <div class="row ex1">
+                <div class="column">
+                    <label>Original Language</label>
+                </div>
+            </div>
+            <div class="row ex1">
+                <div class="column">
+                    <input type="text" 
+                            id="originalLanguage" 
+                            name="originalLanguage" 
+                            formControlName="originalLanguage"
+                            [(ngModel)]="movie.original_language"/>
+
+                    <div *ngIf="submitted && f.originalLanguage.errors">
+                        <div *ngIf="f.originalLanguage.errors.required">Name is required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success" >Save</button>
+    </form>
+
+</div>
