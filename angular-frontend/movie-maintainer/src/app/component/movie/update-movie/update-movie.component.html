@@ -1,29 +1,151 @@
 <div class="col-md-8 offset-md-3">
     <h3>Create Movie</h3>
 
-    <form (ngSubmit)="updateMovie()" [formGroup]="reactiveFrom">
+    <form (ngSubmit)="updateMovie()" [formGroup]="reactiveForm">
 
         <div class="row_2">
             <div class="row ex1">
                 <div class="column">
                     <label>Original Language</label>
                 </div>
+                <div class="column">
+                    <label>Poster Path</label>
+                </div>
+                <div class="column">
+                    <label>Url video</label>
+                </div>
             </div>
             <div class="row ex1">
                 <div class="column">
-                    <input type="text" 
-                            id="originalLanguage" 
-                            name="originalLanguage" 
-                            formControlName="originalLanguage"
-                            [(ngModel)]="movie.original_language"/>
-
+                    <input type="text" id="originalLanguage" 
+                        [(ngModel)]="movie.original_language" 
+                        name="originalLanguage" 
+                        formControlName="originalLanguage"/>
                     <div *ngIf="submitted && f.originalLanguage.errors">
                         <div *ngIf="f.originalLanguage.errors.required">Name is required</div>
                     </div>
                 </div>
+                <div class="column">
+                    <!-- <input type="text" id="poster_path" [(ngModel)]="movie.poster_path" name="poster_path" /> -->
+                </div>
+                <div class="column">
+                    <!-- <input type="text" id="video" [(ngModel)]="movie.video" name="video" /> -->
+                </div>
             </div>
         </div>
 
+        <!-- <div class="row_2">
+            <div class="row ex1">
+                <div class="column">
+                    <label>Title</label>
+                </div>
+                <div class="column">
+                    <label>Overview</label>
+                </div>
+                <div></div>
+            </div>
+
+            <div class="row ex1">
+                <div class="column">
+                    <input type="text" class="form-control" id="title" [(ngModel)]="movie.title" name="title" />
+                </div>
+                <div class="column">
+                    <input type="text" class="form-control" id="overview" [(ngModel)]="movie.overview"
+                        name="overview" />
+                </div>
+                <div class="column-mat">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Release Date"
+                            [(ngModel)]="movie.release_date" name="releaseDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="row_2">
+            <div class="row ex1">
+                <div class="column">
+                    <label>Vote Count</label>
+                </div>
+                <div class="column">
+                    <label>Adult</label>
+                </div>
+                <div class="column">
+                    <label>Backdrop Path</label>
+                </div>
+            </div>
+            <div class="row ex1">
+                <div class="column">
+                    <input type="text" class="form-control" id="voteCount" [(ngModel)]="movie.vote_count"
+                        name="voteCount" />
+                </div>
+                <div class="column">
+                    <input type="text" class="form-control" id="adult" [(ngModel)]="movie.adult" name="adult" />
+                </div>
+                <div class="column">
+                    <input type="text" class="form-control" id="backdropPath" [(ngModel)]="movie.backdrop_path"
+                        name="backdropPath" />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row_2">
+            <div class="row ex1">
+                <div class="column">
+                    <label>Vote Average</label>
+                </div>
+                <div class="column">
+                    <label>Original Title</label>
+                </div>
+                <div class="column">
+                    <label>Popularity</label>
+                </div>
+            </div>
+            <div class="row ex1">
+                <div class="column">
+                    <input type="text" class="form-control" id="voteAverage" [(ngModel)]="movie.vote_average"
+                        name="voteAverage" />
+                </div>
+                <div class="column">
+                    <input type="text" class="form-control" id="originalTitle" [(ngModel)]="movie.original_title"
+                        name="originalTitle" />
+                </div>
+                <div class="column">
+                    <input type="text" class="form-control" id="popularity" [(ngModel)]="movie.popularity"
+                        name="popularity" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row_2">
+            <div class="row ex1">
+                <div class="column">
+                    <label>Media Type</label>
+                </div>
+                <div class="column">
+                    <label>Name</label>
+                </div>
+                <div class="column">
+                    <label>Original Name</label>
+                </div>
+            </div>
+            <div class="row ex1">
+                <div class="column">
+                    <input type="text" class="form-control" id="mediaType" [(ngModel)]="movie.media_type"
+                        name="mediaType" />
+                </div>
+                <div class="column">
+                    <input type="text" class="form-control" id="name" [(ngModel)]="movie.name" name="name" />
+                </div>
+                <div class="column">
+                    <input type="text" class="form-control" id="originalName" [(ngModel)]="movie.original_name"
+                        name="originalName" />
+                </div>
+            </div>
+        </div> -->
         <button type="submit" class="btn btn-success" >Save</button>
     </form>
 

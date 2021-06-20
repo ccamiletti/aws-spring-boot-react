@@ -12,16 +12,16 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class UpdateMovieComponent implements OnInit {
 
   movie: Movie = new Movie();
-  reactiveFrom: FormGroup;
+  reactiveForm: FormGroup;
   submitted: boolean = false;
   constructor(private movieService: MovieService, private route: ActivatedRoute, private formBuilder: FormBuilder) { 
-    this.reactiveFrom = this.formBuilder.group({
+    this.reactiveForm = this.formBuilder.group({
       originalLanguage: new FormControl(null, [Validators.required])
     })
   }
 
   get f() {
-    return this.reactiveFrom.controls;
+    return this.reactiveForm.controls;
   }
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class UpdateMovieComponent implements OnInit {
   updateMovie() {
     this.submitted = true;
     console.log("movie updated =>", this.movie);
-    if (this.reactiveFrom.invalid) {
+    if (this.reactiveForm.invalid) {
       return;
     }
     // this.movieService.updateMovie(this.movie, this.movie.id).subscribe(response => {
