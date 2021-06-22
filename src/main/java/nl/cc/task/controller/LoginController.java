@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/login")
-@CrossOrigin("*")
 public class LoginController {
 
     private final LoginService loginService;
@@ -20,13 +18,18 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @PostMapping
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        return ResponseEntity.ok().body(loginService.login(loginRequest));
+    @GetMapping("/")
+    public ResponseEntity<String> home() {
+        return ResponseEntity.ok().body("Welcome");
     }
 
-    @GetMapping
-    public ResponseEntity<List<String>> getToken() {
-        return ResponseEntity.ok().body(Arrays.asList(loginService.getToken()));
+    @GetMapping("/user")
+    public ResponseEntity<String> user() {
+        return ResponseEntity.ok().body("welcome user");
+    }
+
+    @GetMapping("/admin")
+    public ResponseEntity<String> admin() {
+        return ResponseEntity.ok().body("Welcome admin");
     }
 }
