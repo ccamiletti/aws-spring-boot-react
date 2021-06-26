@@ -1,21 +1,17 @@
 package nl.cc.task.controller;
 
 
-import nl.cc.task.model.LoginRequest;
-import nl.cc.task.service.LoginService;
+import nl.cc.task.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
-
 @RestController
-public class LoginController {
+public class UserController {
 
-    private final LoginService loginService;
+    private final UserService userService;
 
-    public LoginController(LoginService loginService){
-        this.loginService = loginService;
+    public UserController(UserService userService){
+        this.userService = userService;
     }
 
     @GetMapping("/")
